@@ -4,7 +4,7 @@
 
 ## 🎥 Project Demo
 
-[![Watch the Demo](<img width="1470" height="956" alt="Screenshot 2026-03-05 at 10 59 11 PM" src="https://github.com/user-attachments/assets/b2aeb1c0-78a6-46a4-9664-5c7660c158bb" />)](https://drive.google.com/file/d/1vRvN1LPiEssgfCQoisZSsPkKMxlRj8pN/view?usp=sharing)
+[![Watch the Demo]()](https://drive.google.com/file/d/1vRvN1LPiEssgfCQoisZSsPkKMxlRj8pN/view?usp=sharing)
 
 # 🌟 Introduction
 
