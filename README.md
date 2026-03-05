@@ -4,7 +4,7 @@
 
 ## 🎥 Project Demo
 
-[![Watch the Demo]()](https://drive.google.com/file/d/1vRvN1LPiEssgfCQoisZSsPkKMxlRj8pN/view?usp=sharing)
+[![Watch the Demo](https://www.shutterstock.com/image-vector/demo-video-icon-vector-flat-600nw-2572345635.jpg)](https://drive.google.com/file/d/1vRvN1LPiEssgfCQoisZSsPkKMxlRj8pN/view?usp=sharing)
 
 # 🌟 Introduction
 
