@@ -257,15 +257,20 @@ The analyzer loads the trained model and predicts dental conditions.
 ```
 AI-Based-Dental-Radiograph-Analysis-System
 │
-├── analyzer.py
-├── train.py
-├── tooth_segmentation.py
-├── _annotations.csv
-├── requirements.txt
+├── analyzer.py                # Main analysis pipeline
+├── train.py                   # Model training script
+├── tooth_segmentation.py      # Tooth detection and segmentation
+├── requirements.txt           # Python dependencies
+├── _annotations.csv           # Dataset labels for training
 │
-├── unlabeled_images/
+├── unlabeled_images/          # Dental X-ray dataset
+│   ├── image1.jpg
+│   ├── image2.jpg
+│   ├── image3.jpg
 │
-└── README.md
+├── outputs/                   # Generated output images (predictions)
+│
+└── README.md                  # Project documentation
 ```
 
 ### File Descriptions
