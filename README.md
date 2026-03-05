@@ -1,9 +1,3 @@
-Here is your **same README but with proper Markdown code blocks** so that GitHub renders them as **actual code snippets** (with copy button). I only fixed the parts that should be code (commands, structure, architecture flow, etc.) while keeping your text the same.
-
-You can paste this directly into **README.md**.
-
----
-
 # 🦷 AI-Based Dental Radiograph Analysis System
 
 ---
