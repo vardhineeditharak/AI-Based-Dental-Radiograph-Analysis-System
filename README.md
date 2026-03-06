@@ -293,39 +293,51 @@ AI-Based-Dental-Radiograph-Analysis-System
 File Descriptions
 
 app.py
+
 Main Flask application that connects the frontend interface with the AI analysis pipeline.
 
 analyzer.py
+
 Processes dental radiographs and performs the main analysis workflow.
 
 classifier.py
+
 Contains the machine learning model used for classifying dental conditions.
 
 predictor.py
+
 Handles prediction tasks using the trained model.
 
 tooth_detector.py
+
 Responsible for detecting and segmenting individual teeth from dental radiographs.
 
 train_model.py
+
 Script used for training the machine learning model with labeled dataset images.
 
 models/
+
 Directory storing trained machine learning models.
 
 static/
+
 Contains CSS and JavaScript files used by the web interface.
 
 templates/
+
 HTML templates rendered by the Flask application.
 
 uploads/
+
 Stores uploaded dental radiograph images from users.
 
 masks/
+
 Stores generated segmentation masks produced during image processing.
 
 reports/
+
 Stores generated diagnostic reports for analyzed dental X-rays.
 
 # ⚙️ Environment Configuration
