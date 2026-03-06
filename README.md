@@ -456,9 +456,6 @@ Scikit-learn
 TensorFlow
 [https://www.tensorflow.org/](https://www.tensorflow.org/)
 
-Reference Repository
-[https://github.com/adityanandanx/dental-conditions-detection](https://github.com/adityanandanx/dental-conditions-detection)
-
 ---
 
 # 🙏 Acknowledgements
