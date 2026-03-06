@@ -157,12 +157,36 @@ The dataset contains dental radiograph images used for training and testing the 
 Expected dataset structure:
 
 ```
-unlabeled_images/
-    image1.jpg
-    image2.jpg
-    image3.jpg
-
-_annotations.csv
+dataset/
+│
+├── Dental OPG images
+│     ├── opg1.png
+│     ├── opg2.png
+│     ├── opg3.png
+│     └── ...
+│
+└── Segmented Dental Radiography
+      │
+      ├── train
+      │     ├── Cavity
+      │     ├── Fillings
+      │     ├── Impacted Tooth
+      │     ├── Implant
+      │     └── Normal
+      │
+      ├── valid
+      │     ├── Cavity
+      │     ├── Fillings
+      │     ├── Impacted Tooth
+      │     ├── Implant
+      │     └── Normal
+      │
+      └── test
+            ├── Cavity
+            ├── Fillings
+            ├── Impacted Tooth
+            ├── Implant
+            └── Normal
 ```
 
 The **_annotations.csv** file contains labels for the images that are used during training.
