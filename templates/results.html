@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Analysis Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="app-body">
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+
+    <main class="layout">
+        <header class="topbar panel">
+            <p class="eyebrow">Inference Complete</p>
+            <h1>Dental Diagnostic Report</h1>
+            <p class="subtitle">Review the model output, confidence score, and uploaded radiograph.</p>
+        </header>
+
+        <section class="result-grid">
+            <article class="panel report-image">
+                <h2>Uploaded Radiograph</h2>
+                <div class="result-image-frame">
+                    <img src="/static/uploads/{{ image }}" alt="Uploaded dental X-ray">
+                </div>
+            </article>
+
+            <article class="panel report-summary">
+                <h2>Image-Level Classifier</h2>
+                <p class="condition-pill">{{ label }}</p>
+
+                <div class="metric">
+                    <div class="metric-head">
+                        <span>Confidence</span>
+                        <strong>{{ confidence }}%</strong>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" style="width: {{ confidence }}%;"></div>
+                    </div>
+                </div>
+
+                <p class="muted">This result is model-generated. Use as a support signal with clinical judgement.</p>
+
+                <a href="/download-report/{{ report_name }}" class="primary-btn inline-btn">Download Report (JSON)</a>
+                <a href="/" class="primary-btn inline-btn secondary-btn">Analyze Another Image</a>
+            </article>
+        </section>
+
+        <section class="panel report-image">
+            <h2>Segmentation Mask (Pixel-Wise)</h2>
+            <p class="muted">Color-coded semantic mask with FDI tooth numbers.</p>
+            <div class="result-image-frame">
+                <img src="/static/masks/{{ findings.mask_image }}" alt="Color-coded tooth segmentation mask">
+            </div>
+        </section>
+
+        <section class="panel findings-overview">
+            <h2>Tooth-Level Findings</h2>
+            <p class="muted">FDI numbering and missing teeth are estimated from detected tooth regions in this radiograph.</p>
+            <div class="finding-cards">
+                <article class="mini-card">
+                    <p class="mini-label">Detected Teeth</p>
+                    <p class="mini-value">{{ findings.detected_teeth }}</p>
+                </article>
+                <article class="mini-card">
+                    <p class="mini-label">Estimated Missing Teeth</p>
+                    <p class="mini-value">{{ findings.estimated_missing_teeth }}</p>
+                </article>
+                <article class="mini-card">
+                    <p class="mini-label">Abnormal Teeth</p>
+                    <p class="mini-value">{{ findings.abnormal_teeth }}</p>
+                </article>
+                <article class="mini-card">
+                    <p class="mini-label">Dominant Condition</p>
+                    <p class="mini-value">{{ findings.dominant_condition }}</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="panel detailed-findings">
+            <h2>Detailed Findings</h2>
+            <p class="muted">{{ findings.detailed_summary.overall_status }}</p>
+            <div class="detail-list">
+                <div class="detail-row"><span>Missing Tooth</span><strong>{{ findings.detailed_summary.missing_teeth_info }}</strong></div>
+                <div class="detail-row"><span>Missing FDI</span><strong>{{ findings.detailed_summary.missing_fdi_info }}</strong></div>
+                <div class="detail-row"><span>Missing/Impacted</span><strong>{{ findings.detailed_summary.missing_or_impacted_info }}</strong></div>
+                <div class="detail-row"><span>Cavity</span><strong>{{ findings.detailed_summary.cavity_info }}</strong></div>
+                <div class="detail-row"><span>Fillings</span><strong>{{ findings.detailed_summary.fillings_info }}</strong></div>
+                <div class="detail-row"><span>Impacted</span><strong>{{ findings.detailed_summary.impacted_info }}</strong></div>
+                <div class="detail-row"><span>Implant</span><strong>{{ findings.detailed_summary.implant_info }}</strong></div>
+                <div class="detail-row"><span>Normal Teeth</span><strong>{{ findings.detailed_summary.normal_info }}</strong></div>
+                <div class="detail-row"><span>Anomaly Detection</span><strong>{{ findings.detailed_summary.anomaly_info }}</strong></div>
+            </div>
+        </section>
+
+        <section class="extra-grid">
+            <article class="panel condition-breakdown">
+                <h2>Condition Breakdown</h2>
+                <div class="condition-list">
+                    <div class="condition-row"><span>Cavity</span><strong>{{ findings.condition_counts["Cavity"] }}</strong></div>
+                    <div class="condition-row"><span>Fillings</span><strong>{{ findings.condition_counts["Fillings"] }}</strong></div>
+                    <div class="condition-row"><span>Impacted</span><strong>{{ findings.condition_counts["Impacted"] }}</strong></div>
+                    <div class="condition-row"><span>Implant</span><strong>{{ findings.condition_counts["Implant"] }}</strong></div>
+                    <div class="condition-row"><span>Normal</span><strong>{{ findings.condition_counts["Normal"] }}</strong></div>
+                </div>
+            </article>
+
+            <article class="panel condition-breakdown">
+                <h2>Implant Condition (4-Class)</h2>
+                <div class="condition-list">
+                    <div class="condition-row"><span>No Implant</span><strong>{{ findings.implant_condition_counts["No Implant"] }}</strong></div>
+                    <div class="condition-row"><span>Stable Implant</span><strong>{{ findings.implant_condition_counts["Stable Implant"] }}</strong></div>
+                    <div class="condition-row"><span>Peri-Implant Concern</span><strong>{{ findings.implant_condition_counts["Peri-Implant Concern"] }}</strong></div>
+                    <div class="condition-row"><span>Implant Failure Risk</span><strong>{{ findings.implant_condition_counts["Implant Failure Risk"] }}</strong></div>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel finding-table-panel">
+            <h2>FDI Tooth Table</h2>
+            {% if findings.tooth_table %}
+            <div class="finding-table fdi-table">
+                <div class="table-head">
+                    <span>FDI</span>
+                    <span>Label</span>
+                    <span>Conf</span>
+                    <span>Anomaly</span>
+                    <span>Implant Class</span>
+                </div>
+                {% for row in findings.tooth_table %}
+                <div class="table-row">
+                    <span>{{ row.fdi_number if row.fdi_number else "-" }}</span>
+                    <span>{{ row.label }}</span>
+                    <span>{{ row.confidence }}%</span>
+                    <span>{{ row.anomaly_score }}%</span>
+                    <span>{{ row.implant_condition }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="muted">No segmented teeth available for FDI table.</p>
+            {% endif %}
+        </section>
+
+        <section class="panel finding-table-panel">
+            <h2>Top Findings</h2>
+            {% if findings.top_findings %}
+            <div class="finding-table">
+                <div class="table-head">
+                    <span>Condition</span>
+                    <span>Confidence</span>
+                    <span>Region (x,y,w,h)</span>
+                </div>
+                {% for item in findings.top_findings %}
+                <div class="table-row">
+                    <span>{{ item.label }}</span>
+                    <span>{{ item.confidence }}%</span>
+                    <span>{{ item.x }}, {{ item.y }}, {{ item.w }}, {{ item.h }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="muted">No abnormal tooth-level findings were detected.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
