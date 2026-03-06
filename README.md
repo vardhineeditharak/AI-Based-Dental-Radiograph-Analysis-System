@@ -194,6 +194,7 @@ The **_annotations.csv** file contains labels for the images that are used durin
 Typical labels may include dental conditions such as:
 
 * Normal tooth
+* Cavity
 * Filling
 * Implant
 * Impacted tooth
