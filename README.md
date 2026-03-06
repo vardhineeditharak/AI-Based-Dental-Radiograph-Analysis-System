@@ -257,45 +257,76 @@ The analyzer loads the trained model and predicts dental conditions.
 ```
 AI-Based-Dental-Radiograph-Analysis-System
 │
-├── analyzer.py                # Main analysis pipeline
-├── train.py                   # Model training script
-├── tooth_segmentation.py      # Tooth detection and segmentation
-├── requirements.txt           # Python dependencies
-├── _annotations.csv           # Dataset labels for training
+├── app.py                    # Flask application entry point
+├── analyzer.py               # Core analysis pipeline for dental X-rays
+├── classifier.py             # Machine learning classifier for dental conditions
+├── predictor.py              # Prediction module for analyzing new images
+├── tooth_detector.py         # Tooth detection and segmentation logic
+├── train_model.py            # Script used to train the ML model
+├── models                    # Saved trained models
+├── requirements.txt          # Python dependencies
 │
-├── unlabeled_images/          # Dental X-ray dataset
-│   ├── image1.jpg
-│   ├── image2.jpg
-│   ├── image3.jpg
+├── static/                   # Frontend static files
+│   │
+│   ├── css/
+│   │   └── style.css         # Application styling
+│   │
+│   └── js/
+│       └── preview.js        # Image preview functionality
 │
-├── outputs/                   # Generated output images (predictions)
+├── templates/                # HTML templates (Flask)
+│   ├── index.html            # Image upload page
+│   └── results.html          # Prediction results page
 │
-└── README.md                  # Project documentation
+├── uploads/                  # Uploaded dental X-ray images
+│   └── .gitkeep
+│
+├── masks/                    # Generated segmentation masks
+│   └── .gitkeep
+│
+├── reports/                  # Generated diagnostic reports
+│   └── .gitkeep
+│
+└── README.md                 # Project documentation
 ```
 
-### File Descriptions
+File Descriptions
 
-**train.py**
+app.py
+Main Flask application that connects the frontend interface with the AI analysis pipeline.
 
-Used to train the machine learning model.
+analyzer.py
+Processes dental radiographs and performs the main analysis workflow.
 
-**tooth_segmentation.py**
+classifier.py
+Contains the machine learning model used for classifying dental conditions.
 
-Performs tooth detection and segmentation using computer vision.
+predictor.py
+Handles prediction tasks using the trained model.
 
-**analyzer.py**
+tooth_detector.py
+Responsible for detecting and segmenting individual teeth from dental radiographs.
 
-Main analysis script used for prediction.
+train_model.py
+Script used for training the machine learning model with labeled dataset images.
 
-**_annotations.csv**
+models/
+Directory storing trained machine learning models.
 
-Dataset labels used during training.
+static/
+Contains CSS and JavaScript files used by the web interface.
 
-**requirements.txt**
+templates/
+HTML templates rendered by the Flask application.
 
-Contains required Python dependencies.
+uploads/
+Stores uploaded dental radiograph images from users.
 
----
+masks/
+Stores generated segmentation masks produced during image processing.
+
+reports/
+Stores generated diagnostic reports for analyzed dental X-rays.
 
 # ⚙️ Environment Configuration
 
